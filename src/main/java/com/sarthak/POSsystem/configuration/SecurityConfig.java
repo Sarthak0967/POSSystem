@@ -28,7 +28,8 @@ public class SecurityConfig {
         SecurityFilterChain httpSecurity =
                 http
                         .sessionManagement(management ->
-            management.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).authorizeHttpRequests(Authorize ->
+            management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        .authorizeHttpRequests(Authorize ->
                                 Authorize.requestMatchers("/api/**").authenticated()
                                         .requestMatchers("api/super-admin/**")
                                         .hasRole("ADMIN")

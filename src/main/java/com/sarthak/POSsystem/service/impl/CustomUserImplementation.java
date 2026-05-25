@@ -2,6 +2,7 @@ package com.sarthak.POSsystem.service.impl;
 
 import com.sarthak.POSsystem.models.Users;
 import com.sarthak.POSsystem.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,13 +16,14 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Service
+@RequiredArgsConstructor
 public class CustomUserImplementation implements UserDetailsService {
 
-    private UserRepository repository;
+    private final UserRepository repository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users user = repository.findByEmail(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Users user = repository.findByEmail(email);
 
         if(user == null) {
             throw  new UsernameNotFoundException("User not found");
