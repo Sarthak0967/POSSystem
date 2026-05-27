@@ -38,4 +38,7 @@ public class Users {
     @Column(nullable = false)
     private String password;
 
+    @ManyToOne
+    private Store store;
+
 }
