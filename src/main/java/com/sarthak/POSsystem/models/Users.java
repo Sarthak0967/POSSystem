@@ -41,4 +41,8 @@ public class Users {
     @ManyToOne
     private Store store;
 
+    @ManyToOne
+    private Branch branch;
+
+
 }

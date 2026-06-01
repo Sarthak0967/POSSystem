@@ -26,6 +26,9 @@ public class UserDto {
     private LocalDateTime updatedAt;
     private LocalDateTime lastLogIn;
 
+    private Long branchId;
+    private Long storeId;
+
     private String password;
 
 }
