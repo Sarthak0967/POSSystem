@@ -1,13 +1,12 @@
 package com.sarthak.POSsystem.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Ref;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,5 +30,23 @@ public class ShiftReport {
     private Double netSales;
 
     private int totalOrders;
+
+    @ManyToOne
+    private Users cashier;
+
+    @ManyToOne
+    private Branch branch;
+
+    @Transient
+    private List<PaymentSummary> paymentSummaries;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Product> topSellingProducts;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Orders> recentOrders;
+
+    @OneToMany(mappedBy = "shiftReport", cascade = CascadeType.ALL)
+    private List<Refund> refunds;
 
 }
